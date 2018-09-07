@@ -11,6 +11,9 @@ public class Main {
         
         Ventana nuestraventana = new Ventana("Juego de naves");
         ArrayList ArregloDeObjetos = new ArrayList();
+        Coordenada cor1 = new Coordenada(250,250);
+        RectanguloGrafico rectangulo = new RectanguloGrafico(cor1, 80, 80, Color.red);
+        ArregloDeObjetos.add(rectangulo);
         
         
         Coordenada cor2= new Coordenada(350,350);
@@ -21,7 +24,7 @@ public class Main {
         PanelFG nuestroPanel = new PanelFG(ArregloDeObjetos);
         
         nuestraventana.add(nuestroPanel);
-        nuestraventana.setSize(500,400);
+        nuestraventana.setSize(800,600);
         nuestraventana.setVisible(true);
     }
     

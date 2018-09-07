@@ -1,21 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Ejecuciones;
 
-/**
- *
- * @author AUTONOMA
- */
+import Modelos.*;
+import java.util.ArrayList;
+
 public class Main {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
+        
+        Ventana nuestraventana = new Ventana("Juego de naves");
+        ArrayList ArregloDeObjetos = new ArrayList();
+        
+        PanelFG nuestroPanel = new PanelFG(ArregloDeObjetos);
+        
+        nuestraventana.add(nuestroPanel);
+        nuestraventana.setSize(500,400);
+        nuestraventana.setVisible(true);
     }
     
 }

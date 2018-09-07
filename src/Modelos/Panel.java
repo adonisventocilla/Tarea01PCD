@@ -9,8 +9,13 @@ public class Panel extends JPanel{
     {
         this.v=asd;
     }
-    public void paint()
+    public void paint(Graphics g)
     {
-        
+        Dibujable dib;
+        for(int i=0;i<v.size();i++)
+        {
+            dib=(Dibujable)v.get(i);
+            dib.dibujar(g);
+        }
     }
 }

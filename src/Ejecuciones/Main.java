@@ -16,7 +16,8 @@ public class Main {
         ArregloDeObjetos.add(rectangulo);
         
         
-        Coordenada cor2= new Coordenada(350,350);
+        Coordenada cor2= new Coordenada(500,250);//Está a la derecha y a la misma altura que
+        //el rectangulo
         
         CirculoGrafico circulo=new CirculoGrafico(cor2,50,Color.BLACK);
         

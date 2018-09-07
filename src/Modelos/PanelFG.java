@@ -3,9 +3,9 @@ package Modelos;
 import java.awt.*;
 import java.util.ArrayList;
 import javax.swing.JPanel;
-public class Panel extends JPanel{
+public class PanelFG extends JPanel{
     ArrayList v;
-    public Panel(ArrayList asd)
+    public PanelFG(ArrayList asd)
     {
         this.v=asd;
     }

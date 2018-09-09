@@ -19,6 +19,14 @@ public class Main {
         Coordenada cor2= new Coordenada(500,250);//Está a la derecha y a la misma altura que
         //el rectangulo
         
+        //nave
+        Coordenada cor3= new Coordenada(475,500);   //la punta
+        Coordenada cor4= new Coordenada(425,575);   //esquina izquierda
+        Coordenada cor5= new Coordenada(525,575);   //esquina derecha
+        
+        NaveGrafico nave = new NaveGrafico(cor3, cor4, cor5, Color.red);
+        ArregloDeObjetos.add(nave);
+        
         CirculoGrafico circulo=new CirculoGrafico(cor2,50,Color.BLACK);
         
         ArregloDeObjetos.add(circulo);

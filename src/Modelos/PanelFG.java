@@ -11,6 +11,12 @@ public class PanelFG extends JPanel implements KeyListener{
     Coordenada movimientoIzq=new Coordenada(-25,0);
     Coordenada movimientoDer=new Coordenada(25,0);
     Coordenada movimientoNulo=new Coordenada(0,0);
+    
+    RectanguloGrafico Asteroide;
+    RectanguloGrafico Asteroide2;
+    RectanguloGrafico Asteroide3;
+    RectanguloGrafico Asteroide4;
+    RectanguloGrafico Asteroide5;
     public PanelFG(ArrayList VectordeO)
     {
         this.v=VectordeO;
@@ -76,11 +82,23 @@ public class PanelFG extends JPanel implements KeyListener{
         {
             this.nave.mover(movimientoNulo);
         }
+        if(tecla==KeyEvent.VK_Q)
+        {
+        }
     }
     public void refNave(NaveGrafico n)
     {
         
         this.nave=n;
+    }
+    public void refAst(RectanguloGrafico a,RectanguloGrafico b,
+            RectanguloGrafico c,RectanguloGrafico d,RectanguloGrafico e)
+    {
+        Asteroide=a;
+        Asteroide2=b;
+        Asteroide3=c;
+        Asteroide4=d;
+        Asteroide5=e;
     }
     
     public void Iniciar()
@@ -92,6 +110,7 @@ public class PanelFG extends JPanel implements KeyListener{
                 {
                     nave.Ciclo();
                 }
+                Asteroide5.setY(200);
                 Thread.sleep(50);
             }catch(InterruptedException err)
             {

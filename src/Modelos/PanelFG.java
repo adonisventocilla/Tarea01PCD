@@ -19,14 +19,25 @@ public class PanelFG extends JPanel implements KeyListener{
     }
     public void paint(Graphics g)
     {
+        Dimension d= getSize();
+        Image Imagen=createImage(d.width,d.height);
+        Graphics buff=Imagen.getGraphics();
+        
         Dibujable dib;
         for(int i=0;i<v.size();i++)
         {
             dib=(Dibujable)v.get(i);
-            dib.dibujar(g);
+            dib.dibujar(buff);
         }
+        g.drawImage(Imagen, 0, 0, null);
     }
 
+    @Override
+    public void update(Graphics g)
+    {
+        paint(g);
+    }
+    
     @Override
     public void keyTyped(KeyEvent e) {
         
@@ -37,16 +48,11 @@ public class PanelFG extends JPanel implements KeyListener{
         int tecla=e.getKeyCode();
         if(tecla==KeyEvent.VK_LEFT)
         {
-            this.nave.Pintar(this.getGraphics(), Color.WHITE);
-            this.nave.mover(movimientoIzq);
-            this.nave.Pintar(this.getGraphics(), Color.BLACK);
-           
+            this.nave.mover(movimientoIzq);  
         }
         if(tecla==KeyEvent.VK_RIGHT)
         {
-            this.nave.Pintar(this.getGraphics(), Color.WHITE);
             this.nave.mover(movimientoDer);
-            this.nave.Pintar(this.getGraphics(), Color.BLACK);
         }
     }
 
@@ -69,5 +75,13 @@ public class PanelFG extends JPanel implements KeyListener{
     {
         
         this.nave=n;
+    }
+    
+    public void Iniciar()
+    {
+        while (true)
+        {
+            repaint();
+        }
     }
 }

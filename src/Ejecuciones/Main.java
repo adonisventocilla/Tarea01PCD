@@ -39,6 +39,7 @@ public class Main {
         nuestraventana.add(nuestroPanel);
         nuestraventana.setSize(800,600);
         nuestraventana.setVisible(true);
+        nuestroPanel.Iniciar();
     }
     
 }

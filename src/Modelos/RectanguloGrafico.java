@@ -26,6 +26,10 @@ public class RectanguloGrafico extends Rectangulo implements Dibujable {
     public void Ciclo()
     {
         float x=this.getY();
-        this.setY(x+=20);
+        this.setY(x+=5);
+    }
+    void pintar(Color a)
+    {
+        this. color=a;
     }
 }

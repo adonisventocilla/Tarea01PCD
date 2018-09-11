@@ -8,16 +8,16 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 public class PanelFG extends JPanel implements KeyListener{
     ArrayList v;
+    ArrayList ast= new ArrayList();
     NaveGrafico nave;
     Coordenada movimientoIzq=new Coordenada(-25,0);
     Coordenada movimientoDer=new Coordenada(25,0);
     Coordenada movimientoNulo=new Coordenada(0,0);
     
-    RectanguloGrafico Asteroide;
-    RectanguloGrafico Asteroide2;
-    RectanguloGrafico Asteroide3;
-    RectanguloGrafico Asteroide4;
-    RectanguloGrafico Asteroide5;
+    int ContadorAsteroides=5;
+    
+    
+    
     public PanelFG(ArrayList VectordeO)
     {
         this.v=VectordeO;
@@ -95,11 +95,45 @@ public class PanelFG extends JPanel implements KeyListener{
     public void refAst(RectanguloGrafico a,RectanguloGrafico b,
             RectanguloGrafico c,RectanguloGrafico d,RectanguloGrafico e)
     {
-        Asteroide=a;
-        Asteroide2=b;
-        Asteroide3=c;
-        Asteroide4=d;
-        Asteroide5=e;
+        ast.add(a);
+        ast.add(b);
+        ast.add(c);
+        ast.add(d);
+        ast.add(e);
+    }
+    public void Colision()
+    {
+        int i,j;
+        for(i=0;i<nave.balas.size();i++)
+        {
+            CirculoGrafico bala=(CirculoGrafico)nave.balas.get(i);
+            for(j=0;j<ast.size();j++)
+            {
+                RectanguloGrafico aste=(RectanguloGrafico)ast.get(j);
+                
+                Coordenada Corbala=new Coordenada(bala.getX(),bala.getY());
+                
+                Coordenada Derecha =new Coordenada(aste.getX()+30,aste.getY());
+                Coordenada Izquierda=new Coordenada(aste.getX()-15,aste.getY());
+                Coordenada Medio=new Coordenada(aste.getX(),aste.getY());
+                
+                if(Corbala.getX()>Izquierda.getX()&&Corbala.getX()<Derecha.getX()
+                        && Corbala.getY()<Medio.getY())
+                {
+                    aste.pintar(Color.WHITE);
+                    bala.pintar(Color.WHITE);
+                    bala.setY(-100);
+                    aste.setY(-100);
+                    nave.balas.remove(bala);
+                    ast.remove(aste);
+                    ContadorAsteroides--;
+                    
+                }
+                
+            }   
+            
+            
+        }
     }
     
     public void Iniciar()
@@ -111,41 +145,31 @@ public class PanelFG extends JPanel implements KeyListener{
                 {
                     nave.Ciclo();
                 }
-                Asteroide.Ciclo();
-                Asteroide2.Ciclo();
-                Asteroide3.Ciclo();
-                Asteroide4.Ciclo();
-                Asteroide5.Ciclo();
-                if(Asteroide.getY()>525)
+                int i;
+                for(i=0;i<ast.size();i++)
+                {
+                   RectanguloGrafico rect=(RectanguloGrafico) ast.get(i);
+                   rect.Ciclo();
+                   if(rect.getY()>525)
                 {
                     int rango=Aleatorio(800,50);
-                    Asteroide.setY(0);
-                    Asteroide.setX(rango);
+                    rect.setY(0);
+                    rect.setX(rango);
                 }
-                if(Asteroide2.getY()>525)
+                }
+                if(ContadorAsteroides<5)
                 {
-                    int rango=Aleatorio(800,50);
-                    Asteroide2.setY(0);
-                    Asteroide2.setX(rango);
+                    int rango = Aleatorio(800,50);
+                    Coordenada Inicio=new Coordenada(rango,0);
+                    RectanguloGrafico nuevo= new RectanguloGrafico(Inicio,25,25,Color.RED);
+                    ast.add(nuevo);
+                    v.add(nuevo);
+                    nuevo.Ciclo();
+                    ContadorAsteroides++;
+                    
+                            
                 }
-                if(Asteroide3.getY()>525)
-                {
-                    int rango=Aleatorio(800,50);
-                    Asteroide3.setY(0);
-                    Asteroide3.setX(rango);
-                }
-                if(Asteroide4.getY()>525)
-                {
-                    int rango=Aleatorio(800,50);
-                    Asteroide4.setY(0);
-                    Asteroide4.setX(rango);
-                }
-                if(Asteroide5.getY()>525)
-                {
-                    int rango=Aleatorio(800,50);
-                    Asteroide5.setY(0);
-                    Asteroide5.setX(rango);
-                }
+                Colision();
                 Thread.sleep(50);
             }catch(InterruptedException err)
             {

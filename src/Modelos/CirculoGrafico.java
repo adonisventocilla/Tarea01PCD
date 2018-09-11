@@ -16,4 +16,8 @@ public class CirculoGrafico extends Circulo implements Dibujable {
         dw.setColor(color);
         dw.fillOval((int)(this.getX()-this.getRadio()), (int)(this.getY()-this.getRadio()), (int)(2*this.getRadio()),(int)(2*this.getRadio()) );
     }
+    void pintar(Color a)
+    {
+        this. color=a;
+    }
 }

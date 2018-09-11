@@ -36,4 +36,11 @@ public class Coordenada {
     {
         this.y=y;
     }
+    public Coordenada suma(Coordenada S)
+    {
+        float Sumx=this.x+S.getX();
+        float Sumy=this.y+S.getY();
+        Coordenada Cor=new Coordenada(Sumx,Sumy);
+        return Cor;
+    }
 }

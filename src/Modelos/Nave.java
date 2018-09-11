@@ -58,4 +58,10 @@ public class Nave extends Coordenada{
             this.cor2.setY(nva.getY());
         }
     }
+    public void mover(Coordenada nvaCor)
+    {
+        setVertice((this.suma(nvaCor)),1);
+        setVertice((this.cor1.suma(nvaCor)),2);
+        setVertice((this.cor2.suma(nvaCor)),3);
+    }
 }

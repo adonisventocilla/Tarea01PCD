@@ -1,5 +1,6 @@
 
 package Modelos;
+import static Ejecuciones.Main.Aleatorio;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -110,7 +111,41 @@ public class PanelFG extends JPanel implements KeyListener{
                 {
                     nave.Ciclo();
                 }
-                Asteroide5.setY(200);
+                Asteroide.Ciclo();
+                Asteroide2.Ciclo();
+                Asteroide3.Ciclo();
+                Asteroide4.Ciclo();
+                Asteroide5.Ciclo();
+                if(Asteroide.getY()>525)
+                {
+                    int rango=Aleatorio(800,50);
+                    Asteroide.setY(0);
+                    Asteroide.setX(rango);
+                }
+                if(Asteroide2.getY()>525)
+                {
+                    int rango=Aleatorio(800,50);
+                    Asteroide2.setY(0);
+                    Asteroide2.setX(rango);
+                }
+                if(Asteroide3.getY()>525)
+                {
+                    int rango=Aleatorio(800,50);
+                    Asteroide3.setY(0);
+                    Asteroide3.setX(rango);
+                }
+                if(Asteroide4.getY()>525)
+                {
+                    int rango=Aleatorio(800,50);
+                    Asteroide4.setY(0);
+                    Asteroide4.setX(rango);
+                }
+                if(Asteroide5.getY()>525)
+                {
+                    int rango=Aleatorio(800,50);
+                    Asteroide5.setY(0);
+                    Asteroide5.setX(rango);
+                }
                 Thread.sleep(50);
             }catch(InterruptedException err)
             {

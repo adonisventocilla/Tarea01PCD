@@ -38,7 +38,7 @@ public class NaveGrafico extends Nave implements Dibujable {
     public CirculoGrafico Bala()
     {
         Coordenada salida=new Coordenada(this.getX(),this.getY());
-        CirculoGrafico bala=new CirculoGrafico(salida,10,Color.RED);
+        CirculoGrafico bala=new CirculoGrafico(salida,10,Color.BLUE);
         return bala;
     }
     public void Ciclo()

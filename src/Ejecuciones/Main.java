@@ -32,6 +32,10 @@ public class Main {
         ArregloDeObjetos.add(circulo);
         PanelFG nuestroPanel = new PanelFG(ArregloDeObjetos);
         
+        
+        nuestroPanel.refNave(nave);
+        
+        
         nuestraventana.add(nuestroPanel);
         nuestraventana.setSize(800,600);
         nuestraventana.setVisible(true);

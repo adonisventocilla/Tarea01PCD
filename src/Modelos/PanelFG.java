@@ -1,13 +1,21 @@
 
 package Modelos;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 import javax.swing.JPanel;
-public class PanelFG extends JPanel{
+public class PanelFG extends JPanel implements KeyListener{
     ArrayList v;
-    public PanelFG(ArrayList asd)
+    NaveGrafico nave;
+    Coordenada movimientoIzq=new Coordenada(-25,0);
+    Coordenada movimientoDer=new Coordenada(25,0);
+    Coordenada movimientoNulo=new Coordenada(0,0);
+    public PanelFG(ArrayList VectordeO)
     {
-        this.v=asd;
+        this.v=VectordeO;
+        this.addKeyListener(this);
+        setFocusable(true);
     }
     public void paint(Graphics g)
     {
@@ -17,5 +25,49 @@ public class PanelFG extends JPanel{
             dib=(Dibujable)v.get(i);
             dib.dibujar(g);
         }
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        int tecla=e.getKeyCode();
+        if(tecla==KeyEvent.VK_LEFT)
+        {
+            this.nave.Pintar(this.getGraphics(), Color.WHITE);
+            this.nave.mover(movimientoIzq);
+            this.nave.Pintar(this.getGraphics(), Color.BLACK);
+           
+        }
+        if(tecla==KeyEvent.VK_RIGHT)
+        {
+            this.nave.Pintar(this.getGraphics(), Color.WHITE);
+            this.nave.mover(movimientoDer);
+            this.nave.Pintar(this.getGraphics(), Color.BLACK);
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+        int tecla=e.getKeyCode();
+        if(tecla==KeyEvent.VK_LEFT)
+        {
+            
+            this.nave.mover(movimientoNulo);
+            
+           
+        }
+        if(tecla==KeyEvent.VK_RIGHT)
+        {
+            this.nave.mover(movimientoNulo);
+        }
+    }
+    public void refNave(NaveGrafico n)
+    {
+        
+        this.nave=n;
     }
 }

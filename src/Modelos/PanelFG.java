@@ -15,7 +15,9 @@ public class PanelFG extends JPanel implements KeyListener{
     Coordenada movimientoNulo=new Coordenada(0,0);
     
     int ContadorAsteroides=5;
-    
+    TextoGrafico puntos;
+    TextoGrafico vidas;
+    TextoGrafico Final;
     
     
     public PanelFG(ArrayList VectordeO)
@@ -101,6 +103,19 @@ public class PanelFG extends JPanel implements KeyListener{
         ast.add(d);
         ast.add(e);
     }
+    
+    public void RefPuntos(TextoGrafico a){
+        this.puntos = a;
+    }
+    
+    public void Refvida(TextoGrafico b){
+        this.vidas = b;
+    }
+    
+    public void RefFinal(TextoGrafico c){
+        this.Final = c;
+    }
+    
     public void Colision()
     {
         int i,j;

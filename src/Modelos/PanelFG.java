@@ -54,6 +54,12 @@ public class PanelFG extends JPanel implements KeyListener{
         {
             this.nave.mover(movimientoDer);
         }
+        if(tecla==KeyEvent.VK_Q)
+        {
+            CirculoGrafico bala =nave.Bala();
+            nave.balas.add(bala);
+            v.add(bala);
+        }
     }
 
     @Override
@@ -81,6 +87,16 @@ public class PanelFG extends JPanel implements KeyListener{
     {
         while (true)
         {
+            try{
+                if(!nave.balas.isEmpty())
+                {
+                    nave.Ciclo();
+                }
+                Thread.sleep(50);
+            }catch(InterruptedException err)
+            {
+                System.out.println(err);
+            }
             repaint();
         }
     }

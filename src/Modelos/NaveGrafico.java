@@ -33,5 +33,21 @@ public class NaveGrafico extends Nave implements Dibujable {
         Polygon p = new Polygon(x,y,3);
         dw.fillPolygon(p);
     }
+ 
     
+    public CirculoGrafico Bala()
+    {
+        Coordenada salida=new Coordenada(this.getX(),this.getY());
+        CirculoGrafico bala=new CirculoGrafico(salida,10,Color.RED);
+        return bala;
+    }
+    public void Ciclo()
+    {
+        for(int i=0;i<this.balas.size();i++)
+        {
+            CirculoGrafico y=(CirculoGrafico)this.balas.get(i);
+            float x=y.getY();
+            y.setY(x-=20);
+        }    
+    }
 }

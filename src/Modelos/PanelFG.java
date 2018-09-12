@@ -15,6 +15,8 @@ public class PanelFG extends JPanel implements KeyListener{
     Coordenada movimientoNulo=new Coordenada(0,0);
     
     int ContadorAsteroides=5;
+    int Score;
+    int Vidas = 3;
     TextoGrafico puntos;
     TextoGrafico vidas;
     TextoGrafico Final;
@@ -133,7 +135,7 @@ public class PanelFG extends JPanel implements KeyListener{
                 Coordenada Medio=new Coordenada(aste.getX(),aste.getY());
                 
                 if(Corbala.getX()>Izquierda.getX()&&Corbala.getX()<Derecha.getX()
-                        && Corbala.getY()<Medio.getY())
+                        && Corbala.getY()<Medio.getY() && Corbala.getY()+25 > Medio.getY())
                 {
                     aste.pintar(Color.WHITE);
                     bala.pintar(Color.WHITE);
@@ -142,7 +144,38 @@ public class PanelFG extends JPanel implements KeyListener{
                     nave.balas.remove(bala);
                     ast.remove(aste);
                     ContadorAsteroides--;
+                    Score+=5;
+                    puntos.SetColor(Color.WHITE);
+                    String NuevoScore = ""+Score;
+                    TextoGrafico NrPuntos = new TextoGrafico(NuevoScore, Color.RED, 1700, 350);
+                    NrPuntos.setSize(40);
+                    puntos =NrPuntos;
+                    v.add(puntos);
                     
+                    
+                }
+                
+                if ((Medio.getY() > 475 && Medio.getY() < 550) && (nave.cor1.getX() < Medio.getX()) && nave.cor2.getX() > Medio.getX()) {
+                    Score = Score-5;
+                    Vidas--;
+                    String NuevoScore = ""+Score;
+                    String NuevasVidas = ""+Vidas;
+                    vidas.SetColor(Color.WHITE);
+                    puntos.SetColor(Color.WHITE);
+                    TextoGrafico Nrvidas = new TextoGrafico(NuevasVidas, Color.RED, 1700, 150);
+                    Nrvidas.setSize(40);
+                    vidas = Nrvidas;
+                    
+                    TextoGrafico NrPuntos = new TextoGrafico(NuevoScore, Color.RED, 1700, 350);
+                    NrPuntos.setSize(40);
+                    puntos = NrPuntos;
+                    
+                    v.add(vidas);
+                    v.add(puntos);
+                    
+                    ast.remove(aste);
+                    aste.setY(2000);
+                    ContadorAsteroides--;
                 }
                 
             }   

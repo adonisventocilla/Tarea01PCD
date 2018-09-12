@@ -86,6 +86,9 @@ public class Main {
         
         nuestroPanel.refNave(nave);
         nuestroPanel.refAst(Asteroide, Asteroide2, Asteroide3, Asteroide4, Asteroide5);
+        nuestroPanel.RefFinal(textofinal);
+        nuestroPanel.RefPuntos(puntaje);
+        nuestroPanel.Refvida(nrvidas);
         
         nuestraventana.add(nuestroPanel);
         nuestraventana.setSize(1000,600);

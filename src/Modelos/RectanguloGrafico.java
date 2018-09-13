@@ -23,10 +23,10 @@ public class RectanguloGrafico extends Rectangulo implements Dibujable {
     
     }
     
-    public void Ciclo()
+    public void Ciclo(int mov)
     {
         float x=this.getY();
-        this.setY(x+=5);
+        this.setY(x+=mov);
     }
     void pintar(Color a)
     {

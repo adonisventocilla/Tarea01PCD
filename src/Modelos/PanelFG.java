@@ -14,9 +14,15 @@ public class PanelFG extends JPanel implements KeyListener{
     Coordenada movimientoDer=new Coordenada(25,0);
     Coordenada movimientoNulo=new Coordenada(0,0);
     
+    Boolean FinDeJuego = true;
+    
     int ContadorAsteroides=5;
     int Score;
     int Vidas = 3;
+    
+    int Mov = 5;
+    int MAXAST = 5;
+    
     TextoGrafico puntos;
     TextoGrafico vidas;
     TextoGrafico Final;
@@ -186,7 +192,7 @@ public class PanelFG extends JPanel implements KeyListener{
     
     public void Iniciar()
     {
-        while (true)
+        while (FinDeJuego)
         {
             try{
                 if(!nave.balas.isEmpty())
@@ -197,7 +203,7 @@ public class PanelFG extends JPanel implements KeyListener{
                 for(i=0;i<ast.size();i++)
                 {
                    RectanguloGrafico rect=(RectanguloGrafico) ast.get(i);
-                   rect.Ciclo();
+                   rect.Ciclo(Mov);
                    if(rect.getY()>525)
                 {
                     int rango=Aleatorio(800,50);
@@ -205,18 +211,72 @@ public class PanelFG extends JPanel implements KeyListener{
                     rect.setX(rango);
                 }
                 }
-                if(ContadorAsteroides<5)
+                if(ContadorAsteroides< MAXAST)
                 {
                     int rango = Aleatorio(800,50);
                     Coordenada Inicio=new Coordenada(rango,0);
                     RectanguloGrafico nuevo= new RectanguloGrafico(Inicio,25,25,Color.RED);
                     ast.add(nuevo);
                     v.add(nuevo);
-                    nuevo.Ciclo();
+                    nuevo.Ciclo(Mov);
                     ContadorAsteroides++;
                     
                             
                 }
+                
+                
+                String Niveles = "1";
+                
+                TextoGrafico TextoNivel = new TextoGrafico("NIVEL", Color.BLACK, 1700, 500);
+                TextoNivel.setSize(50);
+                
+                TextoGrafico TextoNrNivel = new TextoGrafico(Niveles, Color.RED, 1700, 600);
+                TextoNrNivel.setSize(50);
+                    
+                v.add(TextoNivel);
+                v.add(TextoNrNivel);
+                
+                if (Score >=50 && Score <100) {
+                    
+                    String NuevoNivel = "2";
+                    TextoNrNivel.SetColor(Color.WHITE);
+                    v.add(TextoNrNivel);
+                    TextoGrafico Nrnivel1 = new TextoGrafico(NuevoNivel, Color.RED, 1700, 600);
+                    Nrnivel1.setSize(40);
+                    TextoNrNivel = Nrnivel1;
+                    v.add(TextoNrNivel);
+                    Mov = 7;
+                    MAXAST = 6;
+                    
+                    for(i=0;i<ast.size();i++){
+                    RectanguloGrafico rect=(RectanguloGrafico) ast.get(i);
+                    rect.pintar(Color.GREEN);
+                    }
+                }
+                
+                if (Score >=100 && Score <150) {
+                    
+                    String NuevoNive = "3";
+                    TextoNrNivel.SetColor(Color.WHITE);
+                    v.add(TextoNrNivel);
+                    TextoGrafico Nrnivel3 = new TextoGrafico(NuevoNive, Color.RED, 1700, 600);
+                    Nrnivel3.setSize(40);
+                    TextoNrNivel = Nrnivel3;
+                    v.add(TextoNrNivel);
+                    Mov = 9;
+                    MAXAST = 7;
+                    
+                    for(i=0;i<ast.size();i++){
+                    RectanguloGrafico rect=(RectanguloGrafico) ast.get(i);
+                    rect.pintar(Color.BLUE);
+                    }
+                }
+                
+                if (Vidas <= 0) {
+                    FinDeJuego = false;
+                    v.add(Final);
+                }
+                
                 Colision();
                 Thread.sleep(50);
             }catch(InterruptedException err)
